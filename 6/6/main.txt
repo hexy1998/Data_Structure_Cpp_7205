@@ -1,0 +1,86 @@
+//  Xinyang He
+//  001059405
+
+
+#include <iostream>
+#include <math.h>
+#include <limits.h>
+#include <time.h>
+#include <stdio.h>
+
+using namespace std;
+
+int q;
+
+int cut_rod_recursive(int p[], int n){
+    if (n == 0)
+        return 0;
+    q = INT_MIN;
+    for(int i = 0; i < n; i++){
+        q = max(q, p[i] + cut_rod_recursive(p, n - 1 - i));
+    }
+    return q;
+}
+
+int cut_rod_dp_aux(int p[], int n, int r[]){
+    if(r[n] >= 0){
+        return r[n];
+    }
+    if(n == 0){
+        q = 0;
+    }else{
+        q = INT_MIN;
+    }
+    for(int i = 1; i <= n; i++){
+        q = max(q, p[i] + cut_rod_dp_aux(p, n - i, r));
+    }
+    r[n] = q;
+    return q;
+}
+
+int cut_rod_dp(int p[], int n){
+    int r[n + 1];
+    for(int i = 0; i <= n; i++){
+        r[i] = INT_MIN;
+    }
+    return cut_rod_dp_aux(p, n, r);
+}
+
+int main(){
+    int length[6] = {5, 10, 15, 20, 25, 30};
+    for(int j = 0; j < 6; j++){
+        int n = length[j];
+        int p[n];
+        p[0] = 2;
+        for(int i = 1; i < n - 1; i++){
+            p[i] = floor(i * 2.5);
+        }
+        p[n - 1] = n * 2.5 - 1;
+        
+        cout << "Rod size: " << length[j] << endl;
+        
+        for(int i = 0; i < n; i++){
+        cout << p[i] << " ";
+        }
+        
+        /*
+        cout << endl << "Use recursion: ";
+        clock_t t;
+        t = clock();
+        int res_recur = cut_rod_recursive(p, n);
+        t = clock() - t;
+        cout << res_recur << endl;
+        printf ("It took %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
+        
+        cout << "Use DP: ";
+        t = clock();
+        int res_dp = cut_rod_dp(p, n);
+        t = clock() - t;
+        cout << res_dp << endl;
+        printf ("It took %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
+        */
+        
+        cout << endl;
+    }
+    return 0;
+}

@@ -1,0 +1,24 @@
+Insertion Sort:
+Best 
+moves: 0 comps: 999
+Average 
+moves: 241804 comps: 242795
+Worst 
+moves: 499500 comps: 499500
+
+Heap Sort:
+Best 
+moves: 29127 comps: 20418
+Average 
+moves: 27267 comps: 19178
+Worst 
+moves: 24951 comps: 17634
+
+Quick Sort:
+Best 
+moves: 1501497 comps: 499500
+Average 
+moves: 20202 comps: 11428
+Worst 
+moves: 751497 comps: 499500
+
